@@ -4,6 +4,8 @@
 {% block content %}
 
    <h2 style="text-align: center">{{search | title}}<h2></h2>
+   <h3 style="text-align: center">New Books<h3></h3>
+
     <div class="row">
         
         {% for books in final_books%}
@@ -25,6 +27,30 @@
 
         {% endfor%}
     </div>
+
+    <h2 style="text-align: center">Used Books<h2></h2>
+    <div class="row">
+        
+        {% for cbooks in cheaper_books%}
+            
+                <div class="col s3">   
+                    <div class="card">
+                        <div class="card-image" style="max-height: 341px," >
+                            <a href="{{cbooks.1}}"><img src="{{cbooks.2}}" alt="{{cbooks.0}}" ></a>
+                        </div>
+                        <div class="card-content">
+                            <p>{{cbooks.0}}</p>
+                        </div>
+                        <div class="card-action" >
+                            <a href="{{cbooks.1}}">listing: {{cbooks.3}}</a>
+                        </div>
+                    </div>
+                </div>
+
+
+        {% endfor%}
+    </div>
+
 
 
 {% endblock content %}
