@@ -3,23 +3,24 @@
 
 {% block content %}
 
-   <h2 style="text-align: center">{{search | title}}<h2></h2>
-   <h3 style="text-align: center">New Books<h3></h3>
+   <h2 class="white-text text-darken-2" style="text-align: center">{{search | title}}<h2></h2>
+   <h3 class="white-text text-darken-2" style="border-bottom: 10pt;" >New Books<h3></h3>
 
     <div class="row">
         
         {% for books in final_books%}
             
-                <div class="col s3">   
-                    <div class="card">
-                        <div class="card-image" style="max-height: 341px," >
-                            <a href="{{books.1}}"><img src="{{books.2}}" alt="{{books.0}}" ></a>
+                <div class="col s3" >   
+                    <div class="card"style="background: #232222">
+                        <div class="card-image" style="max-height: 341px"  >
+                            <a  href="{{books.1}}"><img src="{{books.2}}" alt="{{books.0}}" ></a>
                         </div>
-                        <div class="card-content">
-                            <p>{{books.0}}</p>
+                        <div class="card-content" style="min-height:100px" >
+                            <p class="white-text text-darken-2"  style="font-size:13px; text-align:center" >
+                                {{books.0}}</p>
                         </div>
-                        <div class="card-action" >
-                            <a href="{{books.1}}">listing: {{books.3}}</a>
+                        <div class="card-action" style="text-align: center">
+                            <a class="white-text text-darken-2" href="{{books.1}}">listing: ${{books.3}}</a>
                         </div>
                     </div>
                 </div>
@@ -28,24 +29,24 @@
         {% endfor%}
     </div>
 
-    <h2 style="text-align: center">Used Books<h2></h2>
+    <h2 class="white-text text-darken-2" style="text-align: center">Used Books<h2></h2>
     <div class="row">
         
         {% for cbooks in cheaper_books%}
             
-                <div class="col s3">   
-                    <div class="card">
-                        <div class="card-image" style="max-height: 341px," >
-                            <a href="{{cbooks.1}}"><img src="{{cbooks.2}}" alt="{{cbooks.0}}" ></a>
-                        </div>
-                        <div class="card-content">
-                            <p>{{cbooks.0}}</p>
-                        </div>
-                        <div class="card-action" >
-                            <a href="{{cbooks.1}}">listing: {{cbooks.3}}</a>
-                        </div>
+            <div class="col s3" >   
+                <div class="card"style="background: #232222">
+                    <div class="card-image" style="max-height: 341px," >
+                        <a  href="{{cbooks.1}}"><img src="{{cbooks.2}}" alt="{{cbooks.0}}" ></a>
+                    </div>
+                    <div class="card-content" style="min-height:100px" >
+                        <p class="white-text text-darken-2"  style="text-align: center" >{{cbooks.0}}</p>
+                    </div>
+                    <div class="card-action" style="text-align: center" style="display: justify">
+                        <a class="white-text text-darken-2" href="{{cbooks.1}}">listing: ${{cbooks.3}}</a>
                     </div>
                 </div>
+            </div>
 
 
         {% endfor%}
