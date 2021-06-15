@@ -12,10 +12,13 @@ def home(request):
     return render(request, 'scrapper/base.html')
 
 def new_search(request):
+    #gets the user inputted search and stores into our database
     search=request.POST.get('search')
     models.Search.objects.create(search=search)
+    ##quote plus will merge the search into a string 
     final_url=BASE_BAM_URL.format(quote_plus(search))
-    print(final_url)
+    ##requests sent to first site for scraping
+    #we will use beautifulsoup to parse the html and find only the books
     response=requests.get(final_url)
     data=response.text
     soup = BeautifulSoup(data,features='html.parser')
@@ -24,12 +27,12 @@ def new_search(request):
     book_link=post_titles[0].find('a').get('href')
     img_link=post_titles[0].find('img').get('src')
     """
-    price=book_listings[0].find(class_='our-price').text
-    print(price[2:])
+    #price=book_listings[0].find(class_='our-price').text
+    ##list of tuples for the books to be stored in, some images have different format urls so we need to switch after x images
     final_books=[]
     bugimagecounter=0
 
-
+    ##scraping different site to find cheaper books
     cheaper_books=[]
     BNN_final_url=BASE_BNN_URL.format(quote_plus(search))
     response2=requests.get(BNN_final_url,headers=headers)
@@ -45,6 +48,7 @@ def new_search(request):
     book2_image=book_listings2[0].find('img').get('src')
     book2_price=book_listings2[0].find(class_='SearchResultListItem-dollarAmount')
  """
+    #traversing the requested HTML text to find title, link, image, and price
     for cbooks in book_listings2:
         bugimagecounter+=1
         book_title2=cbooks.find('img').get('alt')
@@ -63,12 +67,12 @@ def new_search(request):
                 book2_price=cbooks.find(class_='SearchResultListItem-dollarAmount').text
 
                 cheaper_books.append((book_title2,book2_link,book2_image,book2_price))
-                print(book2_price)
-                print(book_title2)
-                print(book2_image)
+                # print(book2_price)
+                # print(book_title2)
+                # print(book2_image)
 
 
-
+    ##NEW books
     bugimagecounter=0
     for books in book_listings:
         bugimagecounter+=1
@@ -86,9 +90,11 @@ def new_search(request):
     #final_books.sort(key = lambda x: x[3])
     #print(data)
 
+    ##to be sent for the front end
     stuff_for_frontend={
         'search':search,
         'final_books':final_books,
         'cheaper_books':cheaper_books
     }
     return render(request,'scrapper/new_search.html',stuff_for_frontend)
+

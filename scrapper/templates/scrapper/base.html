@@ -13,11 +13,11 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
     </head>
-    <body >
-        <nav>
+    <body class = '#424242 grey darken-4    ' >
+        <nav class = '#212121 grey darken-4        ' >
             <div class = "container">
-                <div class="nav-wrapper">
-                    <a href="/" class="brand-logo">Book Searcher </a>
+                <div class="nav-wrapper" class="" >
+                    <a href="/" class="brand-logo">Frankie's Book Searcher </a>
                     <ul id="nav-mobile" class="right">
                         <li><a href="/">Home</a> </li>
                     </ul>
@@ -25,32 +25,32 @@
             </div>
         </nav>
         <div class="container">
-            <h1 style="text-align: center">Find your favorite books!</h1>
+            <h1 class="white-text text-darken-2" style="text-align: center">Find your favorite books!</h1>
             <div class="row">
                 <div class="col s4">
                     <!-- Promo Content 1 goes here -->
                     <div class="center">
-                        <i class="large material-icons" style="color: #EE6E73">flash_on</i>
-                        <p>Fast site scraper</p>
-                        <p class="light center">Search for any book with our beautiful GUI.</p>
+                        <i class="large material-icons" style="color: #fcfcfc">flash_on</i>
+                        <p class="white-text text-darken-2" >Fast site scraper</p>
+                        <p class="white-text text-darken-2" class="light center">Search for any book with our beautiful GUI.</p>
                     </div>
                 </div>
         
                 <div class="col s4">
                     <!-- Promo Content 2 goes here -->
                     <div class="center">
-                        <i class="large material-icons" style="color: orange">camera</i>
-                        <p>Filter your searches</p>
-                        <p class="light center">Fuctionality to filter based on pricing.</p>
+                        <i class="large material-icons" style="color: rgb(255, 255, 255)">filter_list</i>
+                        <p class="white-text text-darken-2">Filter your searches</p>
+                        <p class="white-text text-darken-2" class="light center">Fuctionality to filter based on pricing. COMING SOON!</p>
                     </div>
                 </div>
         
                 <div class="col s4">
                     <!-- Promo Content 3 goes here -->
                     <div class="center">
-                        <i class="large material-icons" style="color: blue">chrome_reader_mode</i>
-                        <p>Find cheaper books!</p>
-                        <p class="light center">Built with ❤️</p>
+                        <i class="large material-icons" style="color: rgb(250, 250, 250)">money_off</i>
+                        <p class="white-text text-darken-2" >Find cheaper books!</p>
+                        <p class="white-text text-darken-2" class="light center">Built with ❤️</p>
                     </div>
                 </div>
 
@@ -60,7 +60,7 @@
             <form action="{% url 'new_search' %} " method ="post">
                 {% csrf_token %}
   
-              <input type="text" name="search" placeholder="search">
+              <input class = 'white-text darken-4'type="text" name="search" placeholder="Search for your favorite book by name, author, or subject!">
               <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                   <i class="material-icons right">flash_on</i>
               </button>
