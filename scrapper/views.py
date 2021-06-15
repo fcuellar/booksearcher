@@ -5,7 +5,7 @@ import requests
 from . import models
 # Create your views here.
 BASE_BAM_URL='https://www.booksamillion.com/search?filter=&id=8236417472614&query={}'
-BASE_BNN_URL='https://www.thriftbooks.com/browse/?b.search={}'
+BASE_BNN_URL='https://www.goodwillbooks.com/catalogsearch/result/?cat=&q={}'
 headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:66.0) Gecko/20100101 Firefox/66.0", "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "Accept-Language": "en-US,en;q=0.5", "Accept-Encoding": "gzip, deflate", "DNT": "1", "Connection": "close", "Upgrade-Insecure-Requests": "1"}
 
 def home(request):
@@ -38,7 +38,7 @@ def new_search(request):
     response2=requests.get(BNN_final_url,headers=headers)
     data2=response2.text
     soup2 = BeautifulSoup(data2,features='html.parser')
-    book_listings2=soup2.find_all('div',{'class':'AllEditionsItem-tile Recipe-default'})
+    book_listings2=soup2.find_all('li',{'class':'item product product-item'})
    ## book2_link='https://www.barnesandnoble.com/'+book_listings2[0].find('a').get('href')
 
     """ book_title2=book_listings2[0].find('img').get('alt')
@@ -49,7 +49,8 @@ def new_search(request):
     book2_price=book_listings2[0].find(class_='SearchResultListItem-dollarAmount')
  """
     #traversing the requested HTML text to find title, link, image, and price
-    for cbooks in book_listings2:
+    ##UPDATE JUN 15th 2021, THRIFTBOOKS WEBSCRAPING STOPPED WORKING, SCRAPPED A DIFFERENT SITE FOR CHEAPER BOOKS
+    """ for cbooks in book_listings2:
         bugimagecounter+=1
         book_title2=cbooks.find('img').get('alt')
         book2_link='https://www.thriftbooks.com/'+cbooks.find('a').get('href')
@@ -67,9 +68,28 @@ def new_search(request):
                 book2_price=cbooks.find(class_='SearchResultListItem-dollarAmount').text
 
                 cheaper_books.append((book_title2,book2_link,book2_image,book2_price))
-                # print(book2_price)
-                # print(book_title2)
-                # print(book2_image)
+
+ """
+    print(book_listings2)
+    for cbooks in book_listings2:
+        bugimagecounter+=1
+        book_title2=cbooks.find('img').get('alt')
+        book2_link=cbooks.find('a').get('href')
+        book2_image=cbooks.find('img').get('src')
+        book2_price=cbooks.find(class_='price').text
+        book2_price=float(book2_price[1:])
+
+
+        print(book_title2)
+        print(book2_image)
+        print(book2_link)
+        print(book2_price)
+
+
+        ##checks to see if the book is not in stock thus it wouldn't have a price but still may show up in a site
+        #if not checked it would return none for the price and cause an error
+        
+        cheaper_books.append((book_title2,book2_link,book2_image,book2_price))
 
 
     ##NEW books

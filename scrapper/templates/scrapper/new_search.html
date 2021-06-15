@@ -6,16 +6,16 @@
    <h2 class="white-text text-darken-2" style="text-align: center">{{search | title}}<h2></h2>
    <h3 class="white-text text-darken-2" style="text-align: center" >New Books<h3></h3>
 
-    <div class="row">
+    <div class="row .s1" >
         
         {% for books in final_books%}
             
-                <div class="col s3" >   
-                    <div class="card"style="background: #232222">
+                <div class="col s9 m5 l3"  >   
+                    <div class="card"style="background: #232222" >
                         <div class="card-image" style="max-height: 341px"  >
                             <a  href="{{books.1}}"><img src="{{books.2}}" alt="{{books.0}}" ></a>
                         </div>
-                        <div class="card-content" style="min-height:100px" >
+                        <div class="card-content" style="min-height:100px" class="truncate" >
                             <p class="white-text text-darken-2"  style="font-size:13px; text-align:center" >
                                 {{books.0}}</p>
                         </div>
@@ -29,12 +29,12 @@
         {% endfor%}
     </div>
 
-    <h2 class="white-text text-darken-2" style="text-align: center">Used Books<h2></h2>
+    <h2 class="white-text text-darken-2" style="text-align: center">Cheaper Books<h2></h2>
     <div class="row">
         
         {% for cbooks in cheaper_books%}
             
-            <div class="col s3" >   
+            <div class="col s9 m5 l3" >   
                 <div class="card"style="background: #232222">
                     <div class="card-image" style="max-height: 341px," >
                         <a  href="{{cbooks.1}}"><img src="{{cbooks.2}}" alt="{{cbooks.0}}" ></a>
