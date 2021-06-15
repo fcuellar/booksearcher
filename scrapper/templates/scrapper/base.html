@@ -15,11 +15,11 @@
     </head>
     <body class = '#424242 grey darken-4    ' >
         <nav class = '#212121 grey darken-4        ' >
-            <div class = "container">
-                <div class="nav-wrapper" class="" >
-                    <a  href="/" class="brand-logo">Frankie's Book Searcher </a>
-                    <ul id="nav-mobile" class="right">
-                        <li><a href="/">Home</a> </li>
+            <div class = "container" >
+                <div class="nav-wrapper" class="">
+                    <a  href="/" style="font-size: 15pt">Frankie's Book Searcher </a>
+                    <ul id="nav-mobile" class="right" >
+                        <li  ><a  href="/">Home</a> </li>
                     </ul>
                 </div>
             </div>
@@ -57,11 +57,12 @@
 
                 
             </div>
-            <form action="{% url 'new_search' %} " method ="post">
+            
+            <form action="{% url 'new_search' %} " method ="post" >
                 {% csrf_token %}
   
               <input class = 'white-text darken-4'type="text" name="search" placeholder="Search for your favorite book by name, author, or subject!">
-              <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+              <button class="btn waves-effect waves-light"  type="submit" name="action">Submit
                   <i class="material-icons right">flash_on</i>
               </button>
   
