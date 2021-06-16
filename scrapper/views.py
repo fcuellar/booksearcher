@@ -73,12 +73,16 @@ def new_search(request):
     print(book_listings2)
     for cbooks in book_listings2:
         bugimagecounter+=1
-        book_title2=cbooks.find('img').get('alt')
-        book2_link=cbooks.find('a').get('href')
-        book2_image=cbooks.find('img').get('src')
-        book2_price=cbooks.find(class_='price').text
-        book2_price=float(book2_price[1:])
-
+      
+        book2_price=cbooks.find(class_='price')
+        if book2_price is not None:
+                book_title2=cbooks.find('img').get('alt')
+                book2_link=cbooks.find('a').get('href')
+                book2_image=cbooks.find('img').get('src')
+                book2_price=cbooks.find(class_='price').text
+                book2_price=float(book2_price[1:])
+                book2_price=cbooks.find(class_='price').text
+                cheaper_books.append((book_title2,book2_link,book2_image,book2_price))
 
         print(book_title2)
         print(book2_image)
